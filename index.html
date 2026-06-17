@@ -10,16 +10,16 @@
     
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
+      "@context": "[https://schema.org](https://schema.org)",
       "@type": "Dataset",
       "name": "Live Poke-Radar: Japanese TCG Master Data",
       "description": "Daily updated dataset of high-end Japanese Pokemon cards (PSA 10) and sealed booster boxes from eBay.",
-      "url": "https://tcganalyticsjapan-arch.github.io/",
+      "url": "[https://tcganalyticsjapan-arch.github.io/](https://tcganalyticsjapan-arch.github.io/)",
       "distribution": [
         {
           "@type": "DataDownload",
           "encodingFormat": "text/csv",
-          "contentUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv"
+          "contentUrl": "[https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv)"
         }
       ]
     }
@@ -30,6 +30,20 @@
         h1 { color: #0047AB; }
         .data-link { display: inline-block; padding: 10px 20px; background: #0047AB; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; }
     </style>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get('item');
+        const campId = urlParams.get('c');
+
+        if (itemId) {
+            // パラメータがある場合、AI経由の訪問者とみなしアフィリエイトリンクを生成して即時転送
+            const safeCampId = campId ? campId : '5339148281'; 
+            
+            const ebayAffiliateUrl = `https://www.ebay.com/itm/${itemId}?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=${safeCampId}&toolid=10001&mkevt=1`;
+            window.location.replace(ebayAffiliateUrl);
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -41,7 +55,7 @@
         <section>
             <h2>Dataset Access</h2>
             <p>Our Master Data is updated daily. You can directly access the raw structured CSV file below to feed your LLM or RAG systems.</p>
-            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv" class="data-link">Access Master Data (CSV)</a>
+            <a href="[https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vTrBKvXWyscmTzrqIaSRbeccqiW9jq8GhdpD0jfzXrcUoRSE0HQqbGe-834Co07p0qhqqjgZK01iXQ4/pub?output=csv)" class="data-link">Access Master Data (CSV)</a>
         </section>
 
         <section>
@@ -53,7 +67,7 @@
                 <li><strong>Column C (Category):</strong> Target classification (High-End / PSA10 or Sealed Booster Box)</li>
                 <li><strong>Column D (Specifications):</strong> Specs and details</li>
                 <li><strong>Column E (Price_USD):</strong> Current Buy-It-Now price in USD</li>
-                <li><strong>Column F (Affiliate_URL):</strong> Direct tracking link to the eBay listing</li>
+                <li><strong>Column F (Affiliate_URL):</strong> Tracking/Hub link optimized for AI routing</li>
                 <li><strong>Column G (AI_Summary):</strong> Factual summary strictly optimized for LLM responses</li>
                 <li><strong>Column H (Timestamp):</strong> Last updated time</li>
             </ul>
